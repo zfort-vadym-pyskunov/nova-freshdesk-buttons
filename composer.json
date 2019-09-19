@@ -1,0 +1,41 @@
+{
+    "name": "kuznetsov-zfort/nova-freshdesk-buttons",
+    "description": "A Laravel Nova field.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "kuznetsov-zfort/freshdesk": "*",
+        "kuznetsov-zfort/php-enum": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "KuznetsovZfort\\NovaFreshdeskButtons\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KuznetsovZfort\\NovaFreshdeskButtons\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/kuznetsov-zfort/freshdesk.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/kuznetsov-zfort/php-enum.git"
+        }
+    ]
+}

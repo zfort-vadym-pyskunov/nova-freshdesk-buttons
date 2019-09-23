@@ -2,9 +2,10 @@
 
 namespace KuznetsovZfort\NovaFreshdeskButtons;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
-use Illuminate\Support\ServiceProvider;
 
 class FieldServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,8 @@ class FieldServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/nova-freshdesk-buttons.php', 'nova-freshdesk-buttons');
+        Route::middleware(['nova'])
+            ->prefix('kuznetsov-zfort/nova-freshdesk-buttons')
+            ->group(__DIR__ . '/../routes/api.php');
     }
 }

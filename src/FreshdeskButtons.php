@@ -2,10 +2,6 @@
 
 namespace KuznetsovZfort\NovaFreshdeskButtons;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
-use KuznetsovZfort\Freshdesk\Facades\Freshdesk;
 use Laravel\Nova\Fields\Field;
 
 class FreshdeskButtons extends Field
@@ -51,7 +47,7 @@ class FreshdeskButtons extends Field
      */
     public function __construct(string $newLabel, string $viewLabel)
     {
-        parent::__construct('Freshdesk', null, null);
+        parent::__construct('Freshdesk', 'freshdesk', null);
 
         $this->newLabel = $newLabel;
         $this->viewLabel = $viewLabel;
@@ -68,36 +64,10 @@ class FreshdeskButtons extends Field
         $styles = [];
         $styles[] = 'nova-freshdesk-buttons';
         $styles[] = 'nova-freshdesk-buttons-' . strtolower(class_basename($resource));
-        $styles[] = $this->config("styles.{$this->style}");
-
-        $freshdesk = [
-            'newUrl' => '',
-            'viewUrl' => '',
-        ];
-
-        if ($resource instanceof Authenticatable) {
-            $cacheKey = "nova-freshdesk-buttons.user.{$resource->id}";
-
-            $freshdesk = Cache::remember($cacheKey, $this->config('cache.duration'), function () use ($resource) {
-                $contact = Freshdesk::getContact($resource->email);
-                if (empty($contact)) {
-                    return [
-                        'newUrl' => Freshdesk::getNewTicketUrl('email', $resource->email),
-                        'viewUrl' => '',
-                    ];
-                }
-
-                return [
-                    'newUrl' => Freshdesk::getNewTicketUrl('contactId', $contact->id),
-                    'viewUrl' => Freshdesk::getContactTicketsUrl($resource),
-                ];
-            });
-        }
+        $styles[] = config("nova-freshdesk-buttons.styles.{$this->style}");
 
         $this->withMeta([
             'indexName' => '',
-            'freshdeskNewUrl' => $freshdesk['newUrl'],
-            'freshdeskViewUrl' => $freshdesk['viewUrl'],
             'freshdeskStyle' => $styles,
             'freshdeskNewLabel' => $this->newLabel,
             'freshdeskViewLabel' => $this->viewLabel,
@@ -148,15 +118,5 @@ class FreshdeskButtons extends Field
         $this->showOnDetail = false;
 
         return $this;
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-    private function config(string $key)
-    {
-        return Arr::get(config('nova-freshdesk-buttons'), $key);
     }
 }

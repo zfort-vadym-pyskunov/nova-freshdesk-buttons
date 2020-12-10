@@ -1,5 +1,5 @@
 {
-    "name": "kuznetsov-zfort/nova-freshdesk-buttons",
+    "name": "zfort-vadym-pyskunov/nova-freshdesk-buttons",
     "description": "A Laravel Nova field.",
     "keywords": [
         "laravel",
@@ -8,8 +8,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "kuznetsov-zfort/freshdesk": "*",
-        "kuznetsov-zfort/php-enum": "*"
+        "zfort-vadym-pyskunov/freshdesk": "^0.1.20",
+        "zfort-vadym-pyskunov/php-enum": "^1.0.3"
     },
     "autoload": {
         "psr-4": {
@@ -31,11 +31,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/kuznetsov-zfort/freshdesk.git"
+            "url": "https://github.com/zfort-vadym-pyskunov/freshdesk.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/kuznetsov-zfort/php-enum.git"
+            "url": "https://github.com/zfort-vadym-pyskunov/php-enum.git"
         }
     ]
 }

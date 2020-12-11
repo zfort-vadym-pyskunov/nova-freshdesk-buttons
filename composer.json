@@ -8,8 +8,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "zfort-vadym-pyskunov/freshdesk": "^0.1.20",
-        "zfort-vadym-pyskunov/php-enum": "^1.0.3"
+        "zfort-vadym-pyskunov/freshdesk": ">=0.1.9",
+        "zfort-vadym-pyskunov/php-enum": ">=1.0.3"
     },
     "autoload": {
         "psr-4": {
